@@ -36,10 +36,10 @@ endef
 TARGET_CFLAGS += $(FPIC)
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include/libusb-1.0
+	$(INSTALL_DIR) $(1)/usr/include/
 	$(CP) \
 		$(PKG_INSTALL_DIR)/usr/include/libusb-1.0/libusb.h \
-		$(1)/usr/include/libusb-1.0/
+		$(1)/usr/include/
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libusb*.{a,la,so*} $(1)/usr/lib/
 	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
