@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2009-2012 OpenWrt.org
+# Copyright (C) 2009-2013 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,15 +9,24 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=xtables-addons
-PKG_VERSION:=1.42
-PKG_RELEASE:=3.1
+ifeq ($(strip $(call CompareKernelPatchVer,$(KERNEL_PATCHVER),ge,3.7.0)),1)
+PKG_VERSION:=2.3
+PKG_RELEASE:=1
+PKG_MD5SUM:=7d942729c365a549513511061f74c3e3
+else
+PKG_VERSION:=1.45
+PKG_RELEASE:=3
+PKG_MD5SUM:=802d2f556a5e545f44e4b69937bf8490
+PATCH_DIR:=./patches-1.x
+endif
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_MD5SUM:=7c996a0400667b57ab4fb53a013ae742
 PKG_SOURCE_URL:=@SF/xtables-addons
 PKG_BUILD_DEPENDS:=iptables
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
+
+PKG_MAINTAINER:=Jo-Philipp Wich <jow@openwrt.org>
 
 PKG_FIXUP:=autoreconf
 

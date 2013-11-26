@@ -11,6 +11,6 @@
 -install-exec-hook:
 -	depmod -a || :;
 -
- clean-local-mans:
- 	${MAKE} -f Makefile.mans clean;
+ config.status: Makefile.iptrules.in
  
+ tmpdir := $(shell mktemp -dtu)
